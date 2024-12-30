@@ -6,7 +6,7 @@ The project was originally created as a part of JetBrains Student Internship app
 Date of creation: December, 2024
 
 # 📄 Read the paper!!!
-TODO
+Project paper, with comparative analysis, can be read here: [Blind Snake: Comparative Analysis of Heuristics](https://github.com/LukaNedimovic/blind_snake/blob/main/Blind%20Snake%20Comparative%20Analysis%20of%20Heuristics.pdf)
 
 # ⚙️ Implementation details
 The project has a very simple structure.
