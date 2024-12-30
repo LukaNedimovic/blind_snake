@@ -16,6 +16,9 @@ class Engine:
         assert (self.board is not None), 'Engine.simulate() -> Board not set.'
         assert (self.strategy is not None), 'Engine.simulate() -> Strategy not set.'
         
+        if self.board.width * self.board.height > 1_000_000:
+            return
+        
         # print("Initial board:")
         # self.board.draw()
         # print()
