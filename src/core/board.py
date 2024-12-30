@@ -3,7 +3,7 @@ from core.strategy.move import Move
 
 
 class Board:
-    def __init__(self, width: int, height: int, snake_x: int = None, snake_y: int = None, apple_x: int = None, apple_y: int = None):
+    def __init__(self, width: int = 0, height: int = 0, snake_x: int = None, snake_y: int = None, apple_x: int = None, apple_y: int = None):
         self.width = width
         self.height = height
         
@@ -12,18 +12,13 @@ class Board:
 
         self.apple_x = apple_x 
         self.apple_y = apple_y
-         
-    def draw(self):
-        for row in range(self.height):
-            for col in range(self.width):
-                if self.snake_x == col and self.snake_y == row:
-                    print('S', end='')
-                elif self.apple_x == col and self.apple_y == row:
-                    print('A', end='')
-                else:
-                    print('.', end='')
-            
-            print()
+    
+    def generate_random_board(self):
+        snake_point = self.random_point()
+        self.set_snake_at(snake_point[0], snake_point[1])
+        
+        apple_point = self.random_unoccupied_point()
+        self.set_apple_at(apple_point[0], apple_point[1])
          
     def send_move(self, move: Move):
         # Update position
@@ -43,6 +38,18 @@ class Board:
         # Torus effect
         self.snake_x %= self.width
         self.snake_y %= self.height
+    
+    def draw(self):
+        for row in range(self.height):
+            for col in range(self.width):
+                if self.snake_x == col and self.snake_y == row:
+                    print('S', end='')
+                elif self.apple_x == col and self.apple_y == row:
+                    print('A', end='')
+                else:
+                    print('.', end='')
+            
+            print()
         
     def set_apple_at(self, apple_x: int, apple_y: int):
         self.apple_x = apple_x

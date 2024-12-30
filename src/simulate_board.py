@@ -1,47 +1,10 @@
 #!/usr/bin/env python3
 
-import argparse
-
 from core.board import Board
 from core.engine import Engine
+from core.strategy.strategy_factory import StrategyFactory
 
-from core.strategy import strategy
-from core.strategy.concrete.test import Test
-
-AVAILABLE_STRATEGIES = ['test']
-STRATEGY_MAPPING = {'test': Test}
-
-
-def non_negative_int(value):
-    try:
-        ivalue = int(value)
-        if ivalue < 0:
-            raise argparse.ArgumentTypeError(f'{value} is not a non-negative integer.')
-
-        return ivalue
-    
-    except ValueError:
-        raise argparse.ArgumentTypeError(f'{value} is not an integer.')
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(description='Blind Snake Game - Single Board Parser')
-
-    parser.add_argument('--width', type=non_negative_int, required=True)
-    parser.add_argument('--height', type=non_negative_int, required=True)
-
-    parser.add_argument('--snake_x', type=non_negative_int, required=False)
-    parser.add_argument('--snake_y', type=non_negative_int, required=False)
-        
-    parser.add_argument('--apple_x', type=non_negative_int, required=False)
-    parser.add_argument('--apple_y', type=non_negative_int, required=False)
-
-    parser.add_argument('--strategy', type=str, choices=AVAILABLE_STRATEGIES, required=True)
-
-
-    args = parser.parse_args()
-    print('Arguments parsed')
-    return args
+from utils.argparse import parse_args
 
 
 def generate_board(args):
@@ -78,22 +41,14 @@ def generate_board(args):
     
     assert board.get_snake() != board.get_apple(), 'simulate_board.generate_board() -> Snake and apple are at the same position.'
     
-    print('Board generated')
     return board
 
-def get_strategy(strategy_name: str):
-    Strategy_selected = STRATEGY_MAPPING.get(strategy_name)
-    
-    return Strategy_selected()  # Create a strategy instance
 
 if __name__ == '__main__':
-    print('Start')
-    args = parse_args()
+    args = parse_args('simulate_board')
     
     board = generate_board(args)
-    strategy = get_strategy(args.strategy)
+    strategy = StrategyFactory.get_strategy(args.strategy)
+    
     engine = Engine(board, strategy)
-    
-    # board.draw()
-    
-    print(engine.simulate())
+    engine.simulate()
