@@ -26,3 +26,13 @@ To simulate a game, it is sufficient to set a strategy and a board, and then cal
 To run a single game, `simulate_board.py` is used, with a respective script. However, to run large scale experimentation, the sweeper is implemented, namely in `sweep_boards.py`, which takes into consideration maximum width and height, and then runs for each possible dimension combination a certain number of `shots`, to make the statistical analysis credible. Keep in mind that overlaps may happen (i.e. the same game played several times), but the shots are randomly generated each time, so that also provides the statistical benefit.
 
 To run experiments, it is possible to set up bash scripts running both of the files. By calling `sweep_boards.py`, the sweeping is independently performed of the `simulate_board.py` file.
+
+### 📈 Run experiments
+To run the project, it is enough to run the following: 
+<pre>
+<code>git clone https://github.com/LukaNedimovic/blind_snake.git
+cd blind_snake
+source ./setup.sh</code></pre>
+
+This will create the Conda virtual environment, and set up the environment variables for project execution.
+To run an experiment, it is possible to go into: `experiments/scripts` and run certain experiment, such as: `./sweep_coilin.sh`.
