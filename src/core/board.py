@@ -80,8 +80,8 @@ class Board:
         return (
             self.apple_x is not None and 
             self.apple_y is not None and 
-            self.apple_x != point_x and
-            self.apple_y != point_y
+            self.apple_x == point_x and
+            self.apple_y == point_y
         )
         
     def is_snake_at(self, point: tuple):

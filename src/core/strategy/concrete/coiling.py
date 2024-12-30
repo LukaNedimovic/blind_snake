@@ -1,5 +1,3 @@
-import random
-
 from core.strategy.strategy import Strategy
 from core.strategy.move import Move    
     

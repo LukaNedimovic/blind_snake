@@ -4,7 +4,7 @@ from core.board import Board
 from core.engine import Engine
 from core.strategy.strategy_factory import StrategyFactory
 
-from utils.argparse import parse_args
+from utils.argparser import parse_args
 
 
 def generate_board(args):
@@ -51,4 +51,4 @@ if __name__ == '__main__':
     strategy = StrategyFactory.get_strategy(args.strategy)
     
     engine = Engine(board, strategy)
-    engine.simulate()
+    engine.simulate(log=args.log)
