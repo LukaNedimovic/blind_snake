@@ -16,6 +16,11 @@ class Engine:
         assert (self.board is not None), 'Engine.simulate() -> Board not set.'
         assert (self.strategy is not None), 'Engine.simulate() -> Strategy not set.'
         
+        # print("Initial board:")
+        # self.board.draw()
+        # print()
+        # print()
+        
         upper_limit = 35 * self.board.width * self.board.height
         
         move_count = 0

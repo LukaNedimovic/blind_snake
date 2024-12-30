@@ -3,6 +3,6 @@
 cd $SRC_DIR
 
 ./simulate_board.py \
-    --width 10 \
-    --height 10 \
-    --strategy "zig_zag" \
+    --width 6 \
+    --height 6 \
+    --strategy "coiling" \
